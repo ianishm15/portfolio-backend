@@ -1,5 +1,4 @@
 import ApiError from "../utils/ApiError.js";
-import { sendMail } from "../middlewares/sendmail.js";
 import {
   createMessage,
   findAllMessages,
@@ -12,7 +11,6 @@ export const sendContactService = async (contactData) => {
   if (!name || !email || !message) { throw new ApiError(400, "All fields are required") }
 
   const savedMessage = await createMessage(contactData);
-  await sendMail({ name, email, message, });
   return savedMessage;
 
 };
